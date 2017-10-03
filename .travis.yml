@@ -1,0 +1,18 @@
+sudo: required
+language: ruby
+services:
+  - docker
+before_install:
+  - git clone --depth 1 https://github.com/seiferma/Docker_BuildUtils.git /tmp/BuildUtils
+  - . /tmp/BuildUtils/travisSetup.sh
+script:
+  - travisBuild.sh
+deploy:
+  provider: script
+  script: travisDeploy.sh
+  on:
+    branch: master
+env:
+  global: 
+    - IMAGE_NAME=seiferma/alpine-glibc
+    - secure: "avQdNptCzNe1g6492t0755jaOBPiMnVCt1DeNb7qtGFI+U5In7H0iOVewX4wyX0NBiTC++MDKMz8duLhBQ4q27VoJpOZCnvVbCPxZyC06DT61+hJkl7EiFvoJJCHluuO3pjRJol6hZu5tsVlZVGmZxkoeb88gb2RfUugkg2j6J210+lqUlFwXoUDc0eXSl+lpzcHLvjEe9ZbSE+lKPnd9mva3ZAstkcIcgdqt6dWfCIIM/2cl8fICiqbdjC17aI3apj8zwl+y+BXa80QFmNsyAiB8NTSEFMSySOz77VjrKyeaGhWaQbruesn6JjzUk+16WeLBtHLp1DPi0EatqIcVXwb5iObJqtLNoRTDCBPqGP113n7XZT/PEKMN5ygE3HNZNLLl3bCTEkULJFUBaEc9L6bZrZ1+NkwAgZikcdZyulsPEdJebLhYLHkxW+WnPe1usy6HB7KtvrI6pHjZpohsl5d+XmKRkV+ArMmax0hecfzxacXQLpNs+4JyWQoWKttHSfdNzd4mqOmsgb9e8j2VxrTuQrApfUiwjb8lo0CZZdo7Gq89SoT3qsYlzpF8w000JWXrMOsBdeEcv0bPyezMtMy+E6MfAkmQkTyBG7bjOcH/OY/CsLzEpGS2KQocLzOEn8kKFhAe0tEGuSeXxqYadPJdplUsipPdvAZS/166Yk="
